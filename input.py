@@ -8,6 +8,7 @@ class inputmap:
         self.tomato_map = [[0] * self.C for _ in range(self.R)]
         for _ in range(self.R):
             self.pizza.append(f.readline())
+        f.close()
         for x in range(self.R):
             mushrooms_count = 0
             tomato_count = 0
