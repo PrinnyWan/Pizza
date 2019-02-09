@@ -1,4 +1,5 @@
-import input, process
+import input, process, sys, time
+sys.setrecursionlimit(1000000)
 #  "a_example.in"
 #  "b_small.in"
 #  "c_medium.in"
@@ -8,6 +9,7 @@ inputdata = input.inputmap("b_small.in")
 p = process.processdata()
 p.run(inputdata)
 print('Done')
+print(time.process_time())
 
 
 
