@@ -6,6 +6,13 @@ class inputmap:
         self.pizza = []
         self.mushrooms_map = [[0] * self.C for _ in range(self.R)]
         self.tomato_map = [[0] * self.C for _ in range(self.R)]
+        self.sxy = []
+        for x in range(self.H):
+            for y in range(self.H):
+                if 2 * self.L <= (x + 1) * (y + 1) <= self.H:
+                    self.sxy.append((x, y))
+        self.sxy.sort(key=lambda a: a[0] * a[1])
+
         for _ in range(self.R):
             self.pizza.append(f.readline())
         f.close()

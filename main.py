@@ -5,7 +5,7 @@ sys.setrecursionlimit(1000000)
 #  "c_medium.in"
 #  "d_big.in"
 print('pizza run')
-inputdata = input.inputmap("b_small.in")
+inputdata = input.inputmap("c_medium.in")
 p = process.processdata()
 p.run(inputdata)
 print('Done')
