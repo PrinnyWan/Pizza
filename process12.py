@@ -1,24 +1,24 @@
-import copy, LineMatch
+import copy
+
 
 class Process:
 
-    def __init__(self, inputData):
-        self.R, self.C = inputData.R, inputData.C
-        self.L, self.H = inputData.L, inputData.H
-        self.sxy = inputData.sxy
-        self.mushrooms_map = inputData.mushrooms_map
-        self.tomato_map = inputData.tomato_map
-        self.visited = inputData.visited
+    def __init__(self, inputdata):
+        self.R, self.C = inputdata.R, inputdata.C
+        self.sxy = inputdata.sxy
+        self.mushrooms_map = inputdata.mushrooms_map
+        self.tomato_map = inputdata.tomato_map
+        self.L, self.H = inputdata.L, inputdata.H
         self.stack = []
         self.maxarea = 0
         self.leftBound = 0
         self.curSlices = 0
+
         self.cut = 5
         # define block size
-        self.lineMatch = LineMatch.LMProcess(self)
 
     def run(self):
-        visited = self.visited
+        visited = [[0] * self.C for _ in range(self.R)]
         f = open('out.txt', 'w')
         f.close()
         # create a new output file
@@ -27,14 +27,6 @@ class Process:
         cR = min(self.R, self.cut)
         cC = min(self.C, self.cut)
         # when the whole pizza smaller than one block, change size of the first block
-        for x in range(0, self.R, self.cut):
-            for y in range(0, self.C, self.cut):
-                point = self.findPoint2Line(x, y, self.cut)
-                if point:
-                    self.lineMatch.lineMatch(point)
-                print('block', (y // self.cut + 1) + (
-                                ((x + self.cut - 1) // self.cut) * ((self.C + self.cut - 1) // self.cut)))
-
         for x in range(0, self.R, self.cut):
             for y in range(0, self.C, self.cut):
                 self.stack = []
@@ -65,13 +57,6 @@ class Process:
             content = f.read()
             f.seek(0, 0)
             f.write(str(slices) + '\n' + content)
-
-    def findPoint2Line(self, x, y, cut):
-        for _x in range(x, x+ cut):
-            for _y in range(y, y + cut):
-                if not self.visited[x][y] and (_x == 0 or self.visited[_x-1][y]) and (_y == 0 or self.visited[_x][_y-1]):
-                    return _x, _y
-
 
     def count(self, startx, starty, endx, endy, visited):
         count = 0

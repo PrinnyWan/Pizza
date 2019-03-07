@@ -12,6 +12,7 @@ class inputmap:
                 if 2 * self.L <= (x + 1) * (y + 1) <= self.H:
                     self.sxy.append((x, y))
         self.sxy.sort(key=lambda a: a[0] * a[1])
+        # Find all possible slides match the area requirement, and sort them based on the area
 
         for _ in range(self.R):
             self.pizza.append(f.readline())
@@ -29,5 +30,9 @@ class inputmap:
                     tomato_count += 1
                 self.mushrooms_map[x][y] += mushrooms_count
                 self.tomato_map[x][y] += tomato_count
+        self.visited = [[0] * self.C for _ in range(self.R)]
+            # build tomato map and mushrooms map, the map[x][y] means the number of ingredients from 0,0 to x,y
+        f2 = open('out.txt', 'w')
+        f2.close()
         print('Initialization Done')
 
